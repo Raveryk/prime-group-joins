@@ -39,3 +39,10 @@ SELECT SUM(on_hand) FROM products
 JOIN warehouse_product ON products.id=warehouse_product.product_id
 WHERE description='diet pepsi';
 
+--9 How much was the total cost for each order?
+SELECT SUM(quantity*unit_price) as order_cost, orders.id FROM orders
+JOIN line_items ON line_items.order_id=orders.id
+JOIN products ON products.id=line_items.product_id
+GROUP BY orders.id
+ORDER BY orders.id;
+
